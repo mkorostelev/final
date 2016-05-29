@@ -25,7 +25,7 @@ class RoutePointsController < ApplicationController
   # POST /route_points.json
   def create
     @route_point = RoutePoint.new(route_point_params)
-
+    # byebug
     respond_to do |format|
       if @route_point.save
         format.html { redirect_to @route_point, notice: 'Route point was successfully created.' }
@@ -69,6 +69,6 @@ class RoutePointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_point_params
-      params.require(:route_point).permit(:number, :description)
+      params.require(:route_point).permit(:number, :description, :route_id)
     end
 end

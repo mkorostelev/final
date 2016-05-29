@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>id</th>
       <th>Title</th>
       <th>Description</th>
       <th>Author</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @routes.each do |route| %>
       <tr>
+        <td><%= route.id %></td>
         <td><%= route.title %></td>
         <td><%= route.description %></td>
         <td><%= route.author %></td>

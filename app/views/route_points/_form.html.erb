@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :route %>
-    <%= f.collection_select :route_id %>
+    <%= f.label :route_id %>
+    <%= f.collection_select(:route_id, Route.all, :id, :title, prompt: 'Select a route') %>
   </div>
 
   <div class="actions">
