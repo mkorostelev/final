@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tasks
   resources :business_processes
   resources :route_points
   resources :routes

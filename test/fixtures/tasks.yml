@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business_process_id: 1
+  executed: false
+  route_id: 1
+  route_point_id: 1
+  performer_id: 1
+  executor_id: 1
+  execution_date: 2016-05-30 12:58:57
+  comment: MyText
+
+two:
+  business_process_id: 1
+  executed: false
+  route_id: 1
+  route_point_id: 1
+  performer_id: 1
+  executor_id: 1
+  execution_date: 2016-05-30 12:58:57
+  comment: MyText

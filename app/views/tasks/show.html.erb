@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Business process:</strong>
+  <%= @task.business_process_id %>
+</p>
+
+<p>
+  <strong>Executed:</strong>
+  <%= @task.executed %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @task.route_id %>
+</p>
+
+<p>
+  <strong>Route point:</strong>
+  <%= @task.route_point_id %>
+</p>
+
+<p>
+  <strong>Performer:</strong>
+  <%= @task.performer_id %>
+</p>
+
+<p>
+  <strong>Executor:</strong>
+  <%= @task.executor_id %>
+</p>
+
+<p>
+  <strong>Execution date:</strong>
+  <%= @task.execution_date %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @task.comment %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

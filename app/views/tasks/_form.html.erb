@@ -1,0 +1,57 @@
+<%= form_for(task) do |f| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :business_process_id %>
+    <%= f.collection_select(:business_process_id, BusinessProcess.all, :id, :description, prompt: 'Select a BP') %>
+  </div>
+
+  <div class="field">
+    <%= f.label :executed %>
+    <%= f.check_box :executed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :route_id %>
+    <%= f.collection_select(:route_id, Route.all, :id, :title, prompt: 'Select a route') %>
+  </div>
+
+  <div class="field">
+    <%= f.label :route_point_id %>
+    <%= f.collection_select(:route_point_id, RoutePoint.all, :id, :title, prompt: 'Select a route point') %>
+  </div>
+
+  <div class="field">
+    <%= f.label :performer_id %>
+    <%= f.number_field :performer_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :executor_id %>
+    <%= f.number_field :executor_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :execution_date %>
+    <%= f.datetime_select :execution_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

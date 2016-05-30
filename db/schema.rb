@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530090226) do
+ActiveRecord::Schema.define(version: 20160530095857) do
 
   create_table "business_processes", force: :cascade do |t|
     t.string   "description"
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(version: 20160530090226) do
     t.string   "author"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "business_process_id"
+    t.boolean  "executed"
+    t.integer  "route_id"
+    t.integer  "route_point_id"
+    t.integer  "performer_id"
+    t.integer  "executor_id"
+    t.datetime "execution_date"
+    t.text     "comment"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end
