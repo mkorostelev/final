@@ -19,11 +19,17 @@
         <li><a href="http://www..../faq">Questions</a></li>
         <li><a href="http://www..../news">News</a></li>
         <li><a href="http://www..../contact">Contact</a></li>
-        <li><%= link_to 'Tasks', controller: 'tasks' %></li>
-        <li><%= link_to 'Routes', controller: 'routes' %></li>
-        <li><%= link_to 'Route points', controller: 'route_points' %></li>
-        <li><%= link_to 'Bus. proc.', controller: 'business_processes' %></li>
       </ul>
+      <% if session[:user_id] %>
+        <ul>
+          <li><%= link_to 'Tasks', controller: 'tasks' %></li>
+          <li><%= link_to 'Routes', controller: 'routes' %></li>
+          <li><%= link_to 'Route points', controller: 'route_points' %></li>
+          <li><%= link_to 'Bus. proc.', controller: 'business_processes' %></li>
+          <li><%= link_to 'Users', controller: 'users' %></li>
+        </ul>
+        <%= button_to 'Logout', logout_path, method: :delete %>
+      <% end %>
     </div>
     <div id="main">
       <%= yield %>
