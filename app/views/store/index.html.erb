@@ -1,0 +1,14 @@
+<h1>Your Tasks</h1>
+
+<% @tasks.each do |task| %>
+  <div class="entry">
+    <%= image_tag('task.png') %>
+    <h3><%= Route.find_by(id: task.route_id).title %></h3>
+    <%= sanitize('<p>' +
+        RoutePoint.find_by(id: task.route_point_id).description +
+        '</p>') %>
+    <div class="price_line">
+      <span class="price">From <%= task.created_at.to_formatted_s(:long_ordinal) %></span>
+    </div>
+  </div>
+<% end %>
