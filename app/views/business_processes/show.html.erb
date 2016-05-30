@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @business_process.description %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @business_process.author_id %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @business_process.route_id %>
+</p>
+
+<p>
+  <strong>Executed:</strong>
+  <%= @business_process.executed %>
+</p>
+
+<p>
+  <strong>Execution date:</strong>
+  <%= @business_process.execution_date %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= @business_process.file_id %>
+</p>
+
+<%= link_to 'Edit', edit_business_process_path(@business_process) %> |
+<%= link_to 'Back', business_processes_path %>

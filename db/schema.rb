@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530080113) do
+ActiveRecord::Schema.define(version: 20160530090226) do
+
+  create_table "business_processes", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "author_id"
+    t.integer  "route_id"
+    t.boolean  "executed"
+    t.datetime "execution_date"
+    t.integer  "file_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "route_points", force: :cascade do |t|
     t.integer  "number"

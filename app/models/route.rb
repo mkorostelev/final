@@ -1,5 +1,6 @@
 class Route < ApplicationRecord
   has_many :route_points, dependent: :destroy
+  has_many :business_processes
   validates :title, :description, :author, presence: true
   validates :title, uniqueness: true
   validates :title, length: { minimum: 3 }

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  author_id: 1
+  route_id: 1
+  executed: false
+  execution_date: 2016-05-30 12:02:26
+  file_id: 1
+
+two:
+  description: MyString
+  author_id: 1
+  route_id: 1
+  executed: false
+  execution_date: 2016-05-30 12:02:26
+  file_id: 1

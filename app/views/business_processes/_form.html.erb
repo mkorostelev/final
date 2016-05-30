@@ -1,0 +1,47 @@
+<%= form_for(business_process) do |f| %>
+  <% if business_process.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(business_process.errors.count, "error") %> prohibited this business_process from being saved:</h2>
+
+      <ul>
+      <% business_process.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 6 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author_id %>
+    <%= f.number_field :author_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :route_id %>
+    <%= f.collection_select(:route_id, Route.all, :id, :title, prompt: 'Select a route') %>
+  </div>
+
+  <div class="field">
+    <%= f.label :executed %>
+    <%= f.check_box :executed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :execution_date %>
+    <%= f.datetime_select :execution_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file_id %>
+    <%= f.number_field :file_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
