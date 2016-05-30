@@ -1,6 +1,12 @@
-<h1>Route Points</h1>
+<% if @route %>
+<div>
+  <h1><%= @route.title %> edition</h1>
+</div>
+<% else %>
+  <h1>Route Points</h1>
+<% end %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Route</th>
@@ -32,5 +38,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Route Point', new_route_point_path %>
+<%= link_to new_route_point_path, class: "btn btn-default" do %>
+  <i class="glyphicon glyphicon-euro">New Route Point</i>
+<% end %>

@@ -4,7 +4,13 @@ class RoutePointsController < ApplicationController
   # GET /route_points
   # GET /route_points.json
   def index
-    @route_points = RoutePoint.all
+
+    if params[:id]
+      @route = Route.find(params[:id])
+      @route_points = RoutePoint.where(route_id: params[:id])
+    else
+      @route_points = RoutePoint.order(:route_id, :number)
+    end
   end
 
   # GET /route_points/1

@@ -1,5 +1,5 @@
 class StoreController < ApplicationController
   def index
-    @tasks = Task.order(:created_at)
+    @tasks = Task.order(:created_at).where(performer_id: session[:user_id])
   end
 end
