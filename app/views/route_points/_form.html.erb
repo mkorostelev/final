@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+  </div>
+
+  <div class="field">
     <%= f.label :number %>
     <%= f.number_field :number %>
   </div>
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, rows: 6 %>
   </div>
 
   <div class="field">
