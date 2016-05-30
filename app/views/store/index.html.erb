@@ -10,7 +10,7 @@
         '</p>') %>
     <div class="price_line">
       <span class="price">From <%= task.created_at.to_formatted_s(:long_ordinal) %></span>
-      <%= link_to 'Edit', edit_task_path(task) %>
+      <%= button_to 'Edit', edit_task_path(task), :method => :get %>
     </div>
   </div>
 <% end %>
