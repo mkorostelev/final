@@ -42,9 +42,42 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
+      # if task_params["executed"]
+      #   task_params["executor_id"] = session[:user_id]
+      #   task_params["execution_date"] = Time.now
+      #   byebug
+      # end
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
+        if @task.executed
+          curr_route_point = RoutePoint.where(id: @task.route_point_id).order(:number)[0]
+          next_route_point = RoutePoint.where(route_id: @task.route_id).order(:number)[curr_route_point.number]
+
+            if next_route_point
+              task_for_next_route_point_is_created = Task.where(business_process_id: @task.business_process_id, route_point_id: next_route_point.id)[0]
+              if !task_for_next_route_point_is_created
+                # create new task
+                task = Task.create(
+                  business_process_id: @task.business_process_id,
+                  route_id: @task.route_id,
+                  route_point_id: next_route_point.id,
+                  performer_id: next_route_point.performer_id,
+                  executed: false
+                  )
+              end
+            else
+              # the last route point - lets finish BP
+              business_process = BusinessProcess.where(id: @task.business_process_id, executed: false)[0]
+              if business_process
+                business_process.executed = true
+                business_process.execution_date = Time.now
+                business_process.save
+              end
+
+            end
+        end
+
       else
         format.html { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }

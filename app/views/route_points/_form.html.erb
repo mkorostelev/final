@@ -31,6 +31,11 @@
     <%= f.collection_select(:route_id, Route.all, :id, :title, prompt: 'Select a route') %>
   </div>
 
+  <div class="field">
+    <%= f.label :performer_id %>
+    <%= f.collection_select(:performer_id, User.all, :id, :name, prompt: 'Select a performer') %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -75,6 +75,6 @@ class RoutePointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_point_params
-      params.require(:route_point).permit(:number, :description, :route_id, :title)
+      params.require(:route_point).permit(:number, :description, :route_id, :title, :performer_id)
     end
 end
