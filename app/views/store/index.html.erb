@@ -1,6 +1,7 @@
 <h1>Your Tasks</h1>
 
 <% @tasks.each do |task| %>
+  <% if task.executed then next end %>
   <div class="entry">
     <%= image_tag('task.png') %>
     <h3><%= Route.find_by(id: task.route_id).title %></h3>
@@ -9,6 +10,7 @@
         '</p>') %>
     <div class="price_line">
       <span class="price">From <%= task.created_at.to_formatted_s(:long_ordinal) %></span>
+      <%= link_to 'Edit', edit_task_path(task) %>
     </div>
   </div>
 <% end %>
