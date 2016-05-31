@@ -1,4 +1,4 @@
 <h1>Welcome</h1>
 
-It's <%= Time.now %>
+It's <%= Time.now.to_formatted_s(:long_ordinal) %>
 You have <%= pluralize(@total_tasks, "task") %>.
