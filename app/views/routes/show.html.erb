@@ -1,19 +1,16 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_form_for(@route) do |f| %>
+  <div>
+    <%= f.text_field :title, :disabled=>true %>
+  </div>
+  <div>
+    <%= f.text_area :description, :disabled=>true, rows: 6 %>
+  </div>
+  <div>
+    <%= f.collection_select(:author_id, User.where(id: @route.author_id), :id, :name, :disabled=>true) %>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @route.title %>
-</p>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @route.description %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @route.author_id %>
-</p>
 
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>

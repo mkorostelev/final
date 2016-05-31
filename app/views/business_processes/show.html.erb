@@ -1,34 +1,34 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_form_for(@business_process) do |f| %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @business_process.description %>
-</p>
+  <div class="field">
+    <%= f.text_area :description, rows: 6, :disabled=>true %>
+  </div>
 
-<p>
-  <strong>Author:</strong>
-  <%= @business_process.author_id %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:route_id, Route.where(id: @business_process.route_id), :id, :title, :disabled=>true) %>
+  </div>
+  <% if @business_process.id then %>
+    <div class="field">
+      <%= f.check_box :executed, :disabled=>true %>
+    </div>
 
-<p>
-  <strong>Route:</strong>
-  <%= @business_process.route_id %>
-</p>
+    <div class="field">
+      <%= f.datetime_local_field :execution_date, :disabled=>true %>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Executed:</strong>
-  <%= @business_process.executed %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:file_id, Document.where(id: @business_process.file_id), :id, :filename, :disabled=>true) %>
+    <% if @business_process.file_id %>
+    <%= link_to 'Download', download_path(@business_process.file_id), disable_with: 'Downloading...' %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Execution date:</strong>
-  <%= @business_process.execution_date %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:author_id, User.where(id: @business_process.author_id), :id, :name, :disabled=>true) %>
+  </div>
 
-<p>
-  <strong>File:</strong>
-  <%= @business_process.file_id %>
-</p>
-
-<%= link_to 'Edit', edit_business_process_path(@business_process) %> |
-<%= link_to 'Back', business_processes_path %>
+  <%= link_to 'Edit', edit_business_process_path(@business_process) %> |
+  <%= link_to 'Back', business_processes_path %>
+  
+<% end %>

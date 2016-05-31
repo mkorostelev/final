@@ -1,14 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_form_for(@route_point) do |f| %>
 
-<p>
-  <strong>Number:</strong>
-  <%= @route_point.number %>
-</p>
+  <div class="field">
+    <%= f.text_field :title, :disabled=>true %>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @route_point.description %>
-</p>
+  <div class="field">
+    <%= f.number_field :number, label: "Number in route", :disabled=>true %>
+  </div>
 
-<%= link_to 'Edit', edit_route_point_path(@route_point) %> |
-<%= link_to 'Back', route_points_path %>
+  <div class="field">
+    <%= f.text_area :description, rows: 6, :disabled=>true %>
+  </div>
+
+  <div class="field">
+    <%= f.collection_select(:route_id, Route.where(id: @route_point.route_id), :id, :title, :disabled=>true) %>
+  </div>
+
+  <div class="field">
+    <%= f.collection_select(:performer_id, User.where(id: @route_point.performer_id), :id, :name, :disabled=>true) %>
+  </div>
+
+  <%= link_to 'Edit', edit_route_point_path(@route_point) %> |
+  <%= link_to 'Back', route_points_path %>
+
+<% end %>

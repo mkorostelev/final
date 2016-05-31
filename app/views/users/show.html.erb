@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="depot_form">
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<%= form_for(@user) do |f| %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <fieldset>
+    <legend>User Details</legend>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <div class="field">
+      <%= f.label :name, 'Name:' %>
+      <%= f.text_field :name, size: 40, :disabled=>true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email, :disabled=>true %>
+    </div>
+
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+
+  </fieldset>
+<% end %>
+</div>

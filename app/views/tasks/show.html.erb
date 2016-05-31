@@ -1,44 +1,37 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_form_for(@task) do |f| %>
 
-<p>
-  <strong>Business process:</strong>
-  <%= @task.business_process_id %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:business_process_id, BusinessProcess.where(id: @task.business_process_id), :id, :description, :disabled=>true) %>
+  </div>
 
-<p>
-  <strong>Executed:</strong>
-  <%= @task.executed %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:route_id, Route.where(id: @task.route_id), :id, :title, :disabled=>true) %>
+  </div>
 
-<p>
-  <strong>Route:</strong>
-  <%= @task.route_id %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:route_point_id, RoutePoint.where(id: @task.route_point_id), :id, :description, :disabled=>true) %>
+  </div>
 
-<p>
-  <strong>Route point:</strong>
-  <%= @task.route_point_id %>
-</p>
+  <div class="field">
+    <%= f.collection_select(:performer_id, User.where(id: @task.performer_id), :id, :name, :disabled=>true) %>
+  </div>
 
-<p>
-  <strong>Performer:</strong>
-  <%= @task.performer_id %>
-</p>
+  <div class="field">
+    <%= f.text_area :comment, rows: 6, :disabled=>true %>
+  </div>
 
-<p>
-  <strong>Executor:</strong>
-  <%= @task.executor_id %>
-</p>
+  <% if @task.id then %>
+    <div class="field">
+      <%= f.check_box :executed, :disabled=>true %>
+    </div>
+    <% if @task.executed %>
+      <div class="field">
+        <%= f.datetime_local_field :execution_date, :disabled=>true %>
+      </div>
+    <% end %>
+  <% end %>
 
-<p>
-  <strong>Execution date:</strong>
-  <%= @task.execution_date %>
-</p>
+  <%= link_to 'Edit', edit_task_path(@task) %> |
+  <%= link_to 'Back', tasks_path %>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @task.comment %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<% end %>

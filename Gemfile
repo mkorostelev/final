@@ -54,6 +54,7 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap_form'
 gem 'bcrypt', '~> 3.1.7'
 gem 'validates_email_format_of'
 

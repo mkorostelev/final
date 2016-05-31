@@ -1,49 +1,32 @@
-<%= form_for(business_process) do |f| %>
-  <% if business_process.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(business_process.errors.count, "error") %> prohibited this business_process from being saved:</h2>
-
-      <ul>
-      <% business_process.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= bootstrap_form_for(business_process) do |f| %>
 
   <div class="field">
-    <%= f.label :description %>
     <%= f.text_area :description, rows: 6 %>
   </div>
 
   <div class="field">
-    <%= f.label :author_id %>
-    <%= f.collection_select(:author_id, User.all, :id, :name, prompt: 'Select an author') %>
-  </div>
-
-  <div class="field">
-    <%= f.label :route_id %>
     <%= f.collection_select(:route_id, Route.all, :id, :title, prompt: 'Select a route') %>
   </div>
+  <% if business_process.id then %>
+    <div class="field">
+      <%= f.check_box :executed %>
+    </div>
+
+    <div class="field">
+      <%= f.datetime_local_field :execution_date %>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= f.label :executed %>
-    <%= f.check_box :executed %>
-  </div>
-
-  <div class="field">
-    <%= f.label :execution_date %>
-    <%= f.datetime_select :execution_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :file_id %>
     <%= f.collection_select(:file_id, Document.all, :id, :filename, prompt: 'Attach a file') %>
     <% if business_process.file_id %>
     <%= link_to 'Download', download_path(business_process.file_id), disable_with: 'Downloading...' %>
     <% end %>
   </div>
 
+  <div class="field">
+    <%= f.collection_select(:author_id, User.all, :id, :name, prompt: 'Select an author') %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

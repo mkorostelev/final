@@ -5,6 +5,7 @@
     <tr>
       <th>id</th>
       <th>Title/Description</th>
+      <th>Points q-tity</th>
       <th>Author</th>
       <th colspan="4"></th>
     </tr>
@@ -12,7 +13,11 @@
 
   <tbody>
     <% @routes.each do |route| %>
-      <tr>
+        <% if RoutePoint.where(route_id: route.id).count == 0 then %>
+          <tr class="table-danger">
+        <% else %>
+          <tr>
+        <% end %>
         <td><%= route.id %></td>
         <td class="list_description">
           <dl>
@@ -21,6 +26,7 @@
                    length: 80) %></dd>
           </dl>
         </td>
+        <td> <%= RoutePoint.where(route_id: route.id).count %> </td>
         <td><%= if route.author_id then User.find_by(id: route.author_id).name end %></td>
         <td class="list_actions">
           <%= link_to 'Show', route %><br/>
