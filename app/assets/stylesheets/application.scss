@@ -13,6 +13,7 @@
  *= require_self
  *= require_tree .
  */
+@import "bootstrap";
 
 #banner {
   background: #9c9;
@@ -50,7 +51,7 @@
   #side {
     float: left;
     padding: 1em 2em;
-    width: 13em;
+    width: 17em;
     background: #141;
 
     form, div {

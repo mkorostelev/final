@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :author_id %>
-    <%= f.number_field :author_id %>
+    <%= f.collection_select(:author_id, User.all, :id, :name, prompt: 'Select an author') %>
   </div>
 
   <div class="field">
@@ -38,8 +38,12 @@
 
   <div class="field">
     <%= f.label :file_id %>
-    <%= f.number_field :file_id %>
+    <%= f.collection_select(:file_id, Document.all, :id, :filename, prompt: 'Attach a file') %>
+    <% if business_process.file_id %>
+    <%= link_to 'Download', download_path(business_process.file_id), disable_with: 'Downloading...' %>
+    <% end %>
   </div>
+
 
   <div class="actions">
     <%= f.submit %>

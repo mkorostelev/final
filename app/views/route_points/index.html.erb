@@ -6,8 +6,8 @@
   <h1>Route Points</h1>
 <% end %>
 
-<table class="table table-bordered">
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-default">
     <tr>
       <th>Route</th>
       <th>Number</th>
@@ -17,7 +17,7 @@
   </thead>
 
     <% @route_points.each do |route_point| %>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <tr>
         <td><%= Route.find_by(id: route_point.route_id).title %></td>
         <td><%= route_point.number %></td>
         <td class="list_description">
@@ -38,6 +38,6 @@
 </table>
 
 <br>
-<%= link_to new_route_point_path, class: "btn btn-default" do %>
-  <i class="glyphicon glyphicon-euro">New Route Point</i>
+<%= button_to new_route_point_path, :method => :get, class: "btn btn-success" do %>
+  New Route Point
 <% end %>

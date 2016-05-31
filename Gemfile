@@ -53,7 +53,7 @@ group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
-gem 'bootstrap-sass', '2.3.2.0'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'validates_email_format_of'
 

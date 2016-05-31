@@ -1,8 +1,9 @@
 <h1>Business Processes</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-default">
     <tr>
+      <th>id</th>
       <th>Description</th>
       <th>Author</th>
       <th>Route</th>
@@ -15,16 +16,30 @@
 
   <tbody>
     <% @business_processes.each do |business_process| %>
-      <tr>
-        <td><%= business_process.description %></td>
-        <td><%= business_process.author_id %></td>
+      <% if !business_process.executed then %>
+        <tr class="table-danger">
+      <% else %>
+        <tr>
+      <% end %>
+
+        <td><%= business_process.id %></td>
+        <td class="list_description">
+          <dl>
+
+            <dd><%= truncate(strip_tags(business_process.description),
+                   length: 80) %></dd>
+          </dl>
+        </td>
+        <td><%= if business_process.author_id then User.find_by(id: business_process.author_id).name end %></td>
         <td><%= Route.find_by(id: business_process.route_id).title %></td>
-        <td><%= business_process.executed %></td>
-        <td><%= business_process.execution_date %></td>
-        <td><%= business_process.file_id %></td>
-        <td><%= link_to 'Show', business_process %></td>
-        <td><%= link_to 'Edit', edit_business_process_path(business_process) %></td>
-        <td><%= link_to 'Destroy', business_process, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= business_process.executed ? "Yes" : "No" %></td>
+        <td><%= if business_process.executed then business_process.execution_date.to_formatted_s(:long_ordinal) else "Not executed" end %></td>
+        <td><%= if business_process.file_id then Document.find_by(id: business_process.file_id).filename end %></td>
+        <td>
+          <%= link_to 'Show', business_process %></br>
+          <%= link_to 'Edit', edit_business_process_path(business_process) %></br>
+          <%= link_to 'Destroy', business_process, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +47,6 @@
 
 <br>
 
-<%= link_to 'New Business Process', new_business_process_path %>
+<%= button_to new_business_process_path, :method => :get, class: "btn btn-success" do %>
+  New Business Process
+<% end %>
