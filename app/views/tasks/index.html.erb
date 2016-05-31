@@ -9,6 +9,7 @@
       <th>Route</th>
       <th>Route point</th>
       <th>Performer</th>
+      <th>Executer</th>
       <th>Execution date</th>
       <th>Comment</th>
       <th colspan="3"></th>
@@ -29,7 +30,8 @@
         <td><%= Route.find_by(id: task.route_id).title %></td>
         <td><%= RoutePoint.find_by(id: task.route_point_id).title %></td>
         <td><%= if task.performer_id then User.find_by(id: task.performer_id).name end %></td>
-        <td><%= if task.executed then task.execution_date.to_formatted_s(:long_ordinal) else "Not executed" end %></td>
+        <td><%= if task.executor_id then User.find_by(id: task.executor_id).name end %></td>
+        <td><%= if (task.executed && task.execution_date) then task.execution_date.to_formatted_s(:long_ordinal) else "Not executed" end %></td>
         <td><%= truncate(strip_tags(task.comment),
                length: 80) %></td>
         <td>

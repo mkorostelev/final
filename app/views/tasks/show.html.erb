@@ -17,6 +17,10 @@
   </div>
 
   <div class="field">
+    <%= f.collection_select(:executor_id, User.where(id: @task.executor_id), :id, :name, prompt: 'Select an executer') %>
+  </div>
+
+  <div class="field">
     <%= f.text_area :comment, rows: 6, :disabled=>true %>
   </div>
 

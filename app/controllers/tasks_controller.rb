@@ -42,11 +42,10 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
-      # if task_params["executed"]
-      #   task_params["executor_id"] = session[:user_id]
-      #   task_params["execution_date"] = Time.now
-      #   byebug
-      # end
+      if task_params["executed"]
+        params["task"]["executor_id"] = session[:user_id]
+        params["task"]["execution_date"] = Time.now
+      end
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
@@ -68,7 +67,7 @@ class TasksController < ApplicationController
               end
             else
               # the last route point - lets finish BP
-              business_process = BusinessProcess.where(id: @task.business_process_id, executed: false)[0]
+              business_process = BusinessProcess.where(id: @task.business_process_id)[0]#, executed: false)[0]
               if business_process
                 business_process.executed = true
                 business_process.execution_date = Time.now

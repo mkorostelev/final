@@ -17,6 +17,18 @@
   </div>
 
   <div class="field">
+    <%= f.collection_select(:executor_id, User.all, :id, :name, prompt: 'Select an executer') %>
+  </div>
+
+  <div class="field">
+    <% if BusinessProcess.find_by(id: task.business_process_id).file_id %>
+      <h4><%= link_to 'Download file', download_path(BusinessProcess.find_by(id: task.business_process_id).file_id), disable_with: 'Downloading...' %></h4>
+    <% else %>
+      <h4> No file </h4>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.text_area :comment, rows: 6 %>
   </div>
 

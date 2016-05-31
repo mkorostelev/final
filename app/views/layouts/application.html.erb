@@ -22,8 +22,9 @@
       </ul>
       <% if session[:user_id] %>
         <ul>
+          <li><%= link_to 'My tasks', store_index_path %></li>
+          <li><%= link_to 'All tasks', controller: 'tasks' %></li>
           <li><%= link_to 'Files', controller: 'documents' %></li>
-          <li><%= link_to 'Tasks', controller: 'tasks' %></li>
           <li><%= link_to 'Routes', controller: 'routes' %></li>
           <li><%= link_to 'Route points', controller: 'route_points' %></li>
           <li><%= link_to 'Bus. proc.', controller: 'business_processes' %></li>
