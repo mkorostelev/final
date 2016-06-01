@@ -7,7 +7,9 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails5 for more book information.
 #---
 class ApplicationController < ActionController::Base
+
   before_action :authorize
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception

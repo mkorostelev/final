@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  if User.count.zero?
+    skip_before_action :authorize
+  end
   # GET /users
   # GET /users.json
   def index

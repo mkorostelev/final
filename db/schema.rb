@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160531085907) do
 
-  create_table "business_processes", force: :cascade do |t|
+  create_table "business_processes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "description"
     t.integer  "author_id"
     t.integer  "route_id"
@@ -24,33 +24,33 @@ ActiveRecord::Schema.define(version: 20160531085907) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "documents", force: :cascade do |t|
+  create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "filename"
     t.string   "content_type"
-    t.binary   "file_contents"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.binary   "file_contents", limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  create_table "route_points", force: :cascade do |t|
+  create_table "route_points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "number"
-    t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.text     "description",  limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "route_id"
     t.string   "title"
     t.integer  "performer_id"
   end
 
-  create_table "routes", force: :cascade do |t|
+  create_table "routes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "author_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "business_process_id"
     t.boolean  "executed"
     t.integer  "route_id"
@@ -58,12 +58,12 @@ ActiveRecord::Schema.define(version: 20160531085907) do
     t.integer  "performer_id"
     t.integer  "executor_id"
     t.datetime "execution_date"
-    t.text     "comment"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.text     "comment",             limit: 65535
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "password_digest"
     t.string   "email"

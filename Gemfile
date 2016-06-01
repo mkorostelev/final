@@ -5,7 +5,7 @@ ruby '2.3.0'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 # Use sqlite3 as the database for Active Record
 group :development do
-  gem 'sqlite3', '1.3.11'
+  gem 'mysql2', '>= 0.3.18', '< 0.5'
 end
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -49,10 +49,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'pg'
+
 
 group :production do
   gem 'rails_12factor', '0.0.2'
+  gem 'pg'
 end
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'bootstrap_form'

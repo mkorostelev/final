@@ -19,6 +19,9 @@
         <li><a href="http://www..../faq">Questions</a></li>
         <li><a href="http://www..../news">News</a></li>
         <li><a href="http://www..../contact">Contact</a></li>
+        <% if User.count.zero? %>
+          <li><%= link_to 'Users', controller: 'users' %></li>
+        <% end %>
       </ul>
       <% if session[:user_id] %>
         <ul>
@@ -32,6 +35,7 @@
         </ul>
         <%= button_to 'Logout', logout_path, method: :delete %>
       <% end %>
+      
     </div>
     <div id="main">
       <%= yield %>
