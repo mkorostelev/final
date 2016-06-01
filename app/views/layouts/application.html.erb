@@ -28,6 +28,7 @@
           <li><%= link_to 'My tasks', store_index_path %></li>
           <li><%= link_to 'All tasks', controller: 'tasks' %></li>
           <li><%= link_to 'Files', controller: 'documents' %></li>
+          <li><%= link_to 'Resumes', controller: 'resumes' %></li>
           <li><%= link_to 'Routes', controller: 'routes' %></li>
           <li><%= link_to 'Route points', controller: 'route_points' %></li>
           <li><%= link_to 'Bus. proc.', controller: 'business_processes' %></li>
@@ -37,7 +38,7 @@
       <% end %>
       
     </div>
-    <div id="main">
+    <div id="main" style = "padding-top:20px;">
       <%= yield %>
     </div>
   </div>

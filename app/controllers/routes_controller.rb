@@ -15,6 +15,7 @@ class RoutesController < ApplicationController
   # GET /routes/new
   def new
     @route = Route.new
+    @route.author_id = session[:user_id]
   end
 
   # GET /routes/1/edit

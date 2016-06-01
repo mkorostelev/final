@@ -15,6 +15,7 @@ class BusinessProcessesController < ApplicationController
   # GET /business_processes/new
   def new
     @business_process = BusinessProcess.new
+    @business_process.author_id = session[:user_id]
   end
 
   # GET /business_processes/1/edit

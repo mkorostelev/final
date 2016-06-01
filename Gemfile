@@ -59,6 +59,8 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'bootstrap_form'
 gem 'bcrypt', '~> 3.1.7'
 gem 'validates_email_format_of'
+gem 'carrierwave', '~> 0.9'
+gem 'bootstrap-sass', '~> 2.3.2'
 
 #######
 # source 'https://rubygems.org'
