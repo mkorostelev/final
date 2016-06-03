@@ -16,6 +16,7 @@ class RoutesController < ApplicationController
   def new
     @route = Route.new
     @route.author_id = session[:user_id]
+    10.times { @route.route_points.build}
   end
 
   # GET /routes/1/edit
@@ -70,6 +71,7 @@ class RoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_params
-      params.require(:route).permit(:title, :description, :author_id)
+      params.require(:route).permit(:title, :description, :author_id, 
+        route_points: [:id, :title, :number, :description, :performer_id, :route_id, :_destroy])
     end
 end

@@ -1,15 +1,25 @@
 <%= bootstrap_form_for(route) do |f| %>
-  <div>
-    <%= f.text_field :title, help: "Must be at least 3 characters long" %>
-  </div>
-  <div>
-    <%= f.text_area :description, rows: 6 %>
-  </div>
-  <div>
-    <%= f.collection_select(:author_id, User.all, :id, :name, prompt: 'Select an author') %>
-  </div>
 
-  <div class="actions">
+    <%= f.text_field :title, help: "Must be at least 3 characters long" %>
+
+    <%= f.text_area :description, rows: 6 %>
+
+    <%= f.collection_select(:author_id, User.all, :id, :name, prompt: 'Select an author') %>
+
+    Route points
+    <%= f.fields_for :route_points do |route_points_form| %>
+      <li>
+        <%= route_points_form.text_field :title, help: "Must be at least 10 characters long" %>
+    
+        <%= route_points_form.number_field :number, label: "Number in route" %>
+    
+        <%= route_points_form.text_area :description, rows: 6 %>
+    
+        <%= route_points_form.collection_select(:route_id, Route.all, :id, :title, prompt: 'Select a route') %>
+    
+        <%= route_points_form.collection_select(:performer_id, User.all, :id, :name, prompt: 'Select a performer') %>
+      </li>
+    <% end %>
     <%= f.submit %>
-  </div>
+ 
 <% end %>
