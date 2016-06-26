@@ -16,7 +16,7 @@ class RoutesController < ApplicationController
   def new
     @route = Route.new
     @route.author_id = session[:user_id]
-    10.times { @route.route_points.build}
+    # 3.times { @route.route_points.build}
   end
 
   # GET /routes/1/edit
@@ -27,7 +27,7 @@ class RoutesController < ApplicationController
   # POST /routes.json
   def create
     @route = Route.new(route_params)
-
+    
     respond_to do |format|
       if @route.save
         format.html { redirect_to @route, notice: 'Route was successfully created.' }
@@ -43,6 +43,7 @@ class RoutesController < ApplicationController
   # PATCH/PUT /routes/1.json
   def update
     respond_to do |format|
+      # byebug
       if @route.update(route_params)
         format.html { redirect_to @route, notice: 'Route was successfully updated.' }
         format.json { render :show, status: :ok, location: @route }
@@ -71,7 +72,6 @@ class RoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_params
-      params.require(:route).permit(:title, :description, :author_id, 
-        route_points: [:id, :title, :number, :description, :performer_id, :route_id, :_destroy])
+      params.require(:route).permit(:title, :description, :author_id)#, route_points_attributes: [:id, :title, :number, :description, :performer_id])
     end
 end

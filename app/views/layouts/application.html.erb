@@ -16,9 +16,9 @@
     <div id="side">
       <ul>
         <li><%= link_to 'Home', store_index_path %></li>
-        <li><a href="http://www..../faq">Questions</a></li>
-        <li><a href="http://www..../news">News</a></li>
-        <li><a href="http://www..../contact">Contact</a></li>
+        <li><a href="http://www..../documentation">Documentation</a></li>
+        <li><a href="http://www..../design">Design</a></li>
+        <li><a href="http://www..../screencast">Screencast</a></li>
         <% if User.count.zero? %>
           <li><%= link_to 'Users', controller: 'users' %></li>
         <% end %>
@@ -32,7 +32,9 @@
           <li><%= link_to 'Routes', controller: 'routes' %></li>
           <li><%= link_to 'Route points', controller: 'route_points' %></li>
           <li><%= link_to 'Bus. proc.', controller: 'business_processes' %></li>
-          <li><%= link_to 'Users', controller: 'users' %></li>
+          <% if User.find_by(id: session[:user_id], admin: true) %>
+            <li><%= link_to 'Users', controller: 'users' %></li>
+          <% end %>
         </ul>
         <%= button_to 'Logout', logout_path, method: :delete %>
       <% end %>

@@ -26,14 +26,16 @@ class BusinessProcessesController < ApplicationController
   # POST /business_processes.json
   def create
     @business_process = BusinessProcess.new(business_process_params)
-
+    ##
+    @book.document = params[:business_process][:document]
+    ##
     respond_to do |format|
       if @business_process.save
         format.html { redirect_to @business_process, notice: 'Business process was successfully created.' }
         format.json { render :show, status: :created, location: @business_process }
         route_point = RoutePoint.where(route_id: @business_process.route_id).order(:number)[0]
         if route_point
-          task = Task.create(
+          Task.create(
             business_process_id: @business_process.id,
             route_id: @business_process.route_id,
             route_point_id: route_point.id,

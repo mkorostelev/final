@@ -26,8 +26,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    
+    if User.count.zero? && user_params["admin"] == "0"
+      # if first user - it will be admin  
+      params["user"]["admin"] = true
+    end
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, notice: "User #{@user.name} was successfully created." }
@@ -43,12 +47,18 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      begin
+        if @user.update(user_params)
+          format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      rescue StandardError => e
+        format.html { redirect_to users_url,
+          notice: e.message }
+        format.json { head :no_content }
       end
     end
   end
@@ -64,7 +74,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to users_url,
-        notice: 'User was successfully destroyed.' }
+        notice: flash[:notice] }
       format.json { head :no_content }
     end
   end
@@ -77,6 +87,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :email)
+      params.require(:user).permit(:name, :password, :password_confirmation, :email, :admin)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601203140) do
+ActiveRecord::Schema.define(version: 20160604103909) do
 
   create_table "business_processes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "description"
@@ -20,8 +20,12 @@ ActiveRecord::Schema.define(version: 20160601203140) do
     t.boolean  "executed"
     t.datetime "execution_date"
     t.integer  "file_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -76,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160601203140) do
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "admin"
   end
 
 end
